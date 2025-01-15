@@ -1,11 +1,10 @@
-# Navigate to the directory where we will create our virtual environment
-# Create the environment
+# Navigate to the directory where we will create our virtual environment (in the console: cd to the folder)
+# Create the venvironment
 > python -m venv DatabasePSQL-env
 # Activate it
 > DatabasePSQL-env\Scripts\activate
 
 > (deactivate) #To deactivate
-
 # Install necessary libraries. This can be adapted according to our needs and functionalities that we develop for our tool
 > pip install psycopg2
 > pip install SQLAlchemy
@@ -16,90 +15,77 @@
 > pip install openpyxl
 > pip install scikit-learn
 
-
-
 # With everything correctly installed, we proceed to execute our tool
 > python runquery.py
 
 # Once we enter, we just have to execute the actions that interest us
-# Table names:
+# For example, Table names:
 public."Lithic_CAI_Gallery_Lower_La_Garma"
-
+#(Examples)
 #public."Constructive_Elements_Lower_Gallery_La_Garma"
-#public."Bone Tool CAI Lower Gallery La Garma"
-#public."Displaced Elements Lower Gallery La Garma"
-#public."Estratigraphic Units CAI Lower Gallery La Garma"
-#public."Fauna CAI Lower Gallery La Garma"
-#public."Malacofauna CAI Lower La Garma"
-#public."Natural Elements CAI Lower Gallery La Garma"
-#public."Samples CAI Lower Gallery La Garma"
+#public."Bone_Tool_CAI_Lower_Gallery_La_Garma"
+#public."Displaced_Elements_Lower_Gallery_La_Garma"
+#public."Estratigraphic_Units_CAI_Lower_Gallery_La_Garma"
+#public."Fauna_CAI_Lower_Gallery_La_Garma"
+#public."Malacofauna_CAI_Lower_La_Garma"
+#public."Natural_Elements_CAI_Lower_Gallery_La_Garma"
+#public."Samples_CAI_Lower_Gallery_La_Garma"
 
 
 
-'''Resumen de los Scripts
-db_connection.py: Maneja la conexión a la base de datos.
+# Summary of the Scripts
+#db_connection.py: Handles database connections.
+connect_to_db(): Connects to the database using credentials from environment variables.
+close_db_connection(connection): Closes the database connection.
 
-connect_to_db(): Conecta a la base de datos utilizando credenciales de las variables de entorno.
-close_db_connection(connection): Cierra la conexión a la base de datos.
-monitordb.py: Monitorea varios aspectos de la base de datos.
+#monitordb.py: Monitors various aspects of the database.
+monitor_database(connection): Monitors metrics such as database size, active connections, shared buffers, cache hit ratio, and index statistics.
 
-monitor_database(connection): Monitorea métricas como tamaño de la base de datos, conexiones activas, buffers compartidos, ratio de aciertos en caché y estadísticas de índices.
-backup.py: Realiza backups de la base de datos.
+#backup.py: Performs database backups.
+backup_database(host, database, user, password=None): Performs a backup of the specified database.
 
-backup_database(host, database, user, password=None): Realiza un backup de la base de datos especificada.
-exc.py: Exporta datos de una tabla a un archivo Excel.
+#exc.py: Exports table data to an Excel file.
+fetch_all_data_from_table(connection, table_name): Retrieves all data from a table and saves it to an Excel file.
+get_table_names(connection): Retrieves the names of all tables in the database (now moved to `utils.py`).
 
-fetch_all_data_from_table(connection, table_name): Obtiene todos los datos de una tabla y los guarda en un archivo Excel.
-get_table_names(connection): Obtiene los nombres de todas las tablas en la base de datos (ahora movido a utils.py).
-query.py: Ejecuta consultas personalizadas en la base de datos.
+#query.py: Executes custom queries on the database.
+execute_query(connection, query): Executes an SQL query and returns the result as a DataFrame.
+query_database(connection): Allows users to create and execute custom SQL queries.
 
-execute_query(connection, query): Ejecuta una consulta SQL y retorna el resultado como un DataFrame.
-query_database(connection): Permite al usuario crear y ejecutar consultas SQL personalizadas.
-Mapsdis.py: Genera un mapa de distribución basado en filtros y columnas definidos por el usuario.
+#Mapsdis.py: Generates a distribution map based on user-defined filters and columns.
+generate_distribution_map(connection): Generates and optionally saves a distribution map.
 
-generate_distribution_map(connection): Genera y opcionalmente guarda un mapa de distribución.
-Kernelmap.py: Genera un mapa de densidad de kernel basado en geometrías y opcionalmente incluye una capa de fondo.
+#Kernelmap.py: Generates a kernel density map based on geometries and optionally includes a background layer.
+generate_density_map(table_name, connection, column_name, background_table=None)*: Generates a kernel density map with an optional background layer.
 
-generate_density_map(table_name, connection, column_name, background_table=None): Genera un mapa de densidad de kernel con una capa de fondo opcional.
-utils.py: Contiene funciones auxiliares que se usan en varios módulos.
+#utils.py: Contains utility functions used across multiple modules.
+get_table_names(connection): Retrieves the names of all tables in the database.
+get_column_names(connection, table_name): Retrieves the names of all columns in a specific table.
 
-get_table_names(connection): Obtiene los nombres de todas las tablas en la base de datos.
-get_column_names(connection, table_name): Obtiene los nombres de todas las columnas en una tabla específica.
-main.py: Contiene el menú principal y maneja la lógica para ejecutar las diferentes funcionalidades de la aplicación.
-
-main_menu(connection): Muestra un menú con opciones para realizar diversas tareas en la base de datos.'''
-
+#main.py: Contains the main menu and manages the logic for executing the application's various functionalities.
+main_menu(connection): Displays a menu with options to perform various tasks on the database.
 
 
 
+# Creating an Executable for Your Python Application
+#To turn your application into an executable, you can use tools like **PyInstaller**, which package your Python application into a single executable file that can run on any system without requiring Python to be installed. 
+#Here’s a step-by-step guide to achieve this:
 
-
-
-'''Para convertir tu aplicación en un ejecutable, puedes utilizar herramientas como PyInstaller, que empaquetan tu aplicación Python en un solo archivo ejecutable que puede ejecutarse en cualquier sistema que no tenga Python instalado. Aquí tienes una guía paso a paso para lograrlo:
-
-Paso 1: Instalar PyInstaller
-Primero, necesitas instalar PyInstaller. Puedes hacerlo usando pip:
-
-
+## Step 1: Install PyInstaller
+#First, you need to install PyInstaller. You can do this using `pip`:
 pip install pyinstaller
 
-
-
-Paso 2: Crear el Ejecutable
-Navega al directorio de tu proyecto y ejecuta el siguiente comando para crear un ejecutable de tu aplicación principal (main.py):
-
-bash
-Copiar código
+##Step 2: Create the Executable
+Navigate to your project directory and run the following command to create an executable for your main application file (main.py):
 pyinstaller --onefile --name my_application main.py
+                                                                                        
+#Step 3: Include Additional Files
+If your application requires additional files (such as images, configuration files, etc.), you can specify these files using the --add-data argument. The syntax depends on your operating system.
 
-
-
-Paso 3: Incluir Archivos Adicionales
-Si tu aplicación necesita incluir archivos adicionales (como imágenes, archivos de configuración, etc.), puedes especificar estos archivos usando el argumento --add-data. La sintaxis depende de tu sistema operativo.
-
-En Windows:
+On Windows:
 
 pyinstaller --onefile --name my_application --add-data "path\to\file;destination\path" main.py
 
+#( Example) pyinstaller --onefile --name my_application --add-data "garma.png;." --add-data "config.json;." main.py
 
-pyinstaller --onefile --name my_application --add-data "garma.png;." --add-data "config.json;." main.py'''
+                                                                                        
