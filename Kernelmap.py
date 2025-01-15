@@ -7,13 +7,13 @@ import matplotlib.image as mpimg
 import os
 import logging
 import re
-from utils import get_table_names, get_column_names  # Importar desde utils.py
+from utils import get_table_names, get_column_names
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname=s - %(message=s')
 
 def generate_density_map(table_name, connection, column_name, background_table=None):
     """
-    Generates a kernel density map from the specified table with an optional background layer.
+    Generates a kernel density map from the specified table with a background.
 
     Args:
         table_name (str): Name of the table containing the polygon geometries.
@@ -47,11 +47,9 @@ def generate_density_map(table_name, connection, column_name, background_table=N
         centroids = gdf.geometry.centroid
         coords = np.vstack([centroids.x, centroids.y]).T
 
-        # Adjust the bandwidth for more accuracy
-        kde = KernelDensity(bandwidth=0.1, kernel='gaussian')
+        kde = KernelDensity(bandwidth=0.1, kernel='gaussian')   # Adjust the bandwidth for more accuracy
         kde.fit(coords)
-
-        # Increase the mesh resolution for more detail
+        
         x_min, x_max = coords[:, 0].min() - 1, coords[:, 0].max() + 1
         y_min, y_max = coords[:, 1].min() - 1, coords[:, 1].max() + 1
         xx, yy = np.meshgrid(np.linspace(x_min, x_max, 500), np.linspace(y_min, y_max, 500))
@@ -75,7 +73,7 @@ def generate_density_map(table_name, connection, column_name, background_table=N
         fig.colorbar(cbar, ax=ax, label=f'Density of {column_name}')
 
         # Load and display the logo in the lower left corner
-        logo_path = 'garma.png'  # Ensure 'garma.png' is in the current directory
+        logo_path = 'garma.png'  # Ensure 'xxx.png' is in the current directory (Example)
         if os.path.exists(logo_path):
             logging.info(f"Loading logo from {logo_path}")
             logo_img = mpimg.imread(logo_path)
@@ -90,8 +88,7 @@ def generate_density_map(table_name, connection, column_name, background_table=N
         ax.set_ylim(y_min, y_max)
         ax.set_title('Kernel Density Map with Optional Background')
 
-        # Ensure the 'figures' directory exists and save the figure there
-        figures_dir = os.path.join(os.getcwd(), 'figures')
+        figures_dir = os.path.join(os.getcwd(), 'figures')# Ensure the 'figures' directory exists and save the figure there
         os.makedirs(figures_dir, exist_ok=True)
         figure_path = os.path.join(figures_dir, 'kernel_density_map.png')
         plt.savefig(figure_path)
@@ -102,7 +99,7 @@ def generate_density_map(table_name, connection, column_name, background_table=N
     except Exception as e:
         logging.error(f"Error generating density map: {e}")
 
-# Función de prueba comentada para evitar ejecuciones no deseadas.
+
 # connection = connect_to_db()
 # if connection:
 #     generate_density_map("your_table_name", connection, "your_column_name")
