@@ -2,7 +2,7 @@ import pandas as pd
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import logging
-from utils import get_table_names, get_column_names  # Importar desde utils.py
+from utils import get_table_names, get_column_names
 import os
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname=s - %(message=s')
@@ -43,7 +43,7 @@ def generate_distribution_map(connection):
             print("Invalid column name.")
             return
 
-        # Obtener filtros adicionales
+        # Get additional filters
         filters = {}
         while True:
             filter_column = input("Enter a column name to filter by (or press Enter to finish): ").strip()
@@ -57,7 +57,7 @@ def generate_distribution_map(connection):
                 filters[filter_column] = []
             filters[filter_column].append(filter_value)
 
-        # Construir la consulta SQL con los filtros
+        # Build the SQL query with the filters
         filter_query_parts = []
         for filter_column, values in filters.items():
             column_conditions = [f'"{filter_column}" = \'{value}\'' for value in values]
@@ -94,7 +94,7 @@ def generate_distribution_map(connection):
     except Exception as e:
         logging.error(f"Error generating distribution map: {e}")
 
-# Función de prueba comentada para evitar ejecuciones no deseadas.
+
 # connection = connect_to_db()
 # if connection:
 #     generate_distribution_map(connection)
