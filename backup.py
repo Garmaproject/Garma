@@ -4,7 +4,6 @@ from datetime import datetime
 import getpass
 import logging
 
-# Configurar el logger
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def backup_database(host, database, user, password=None):
@@ -22,7 +21,6 @@ def backup_database(host, database, user, password=None):
     """
     try:
         if password is None:
-            # Pedir contraseña de forma segura si no se proporcionó
             password = getpass.getpass(prompt=f"Enter password for user {user}: ")
         
         # Create a timestamped filename for the backup
@@ -62,5 +60,4 @@ def backup_database(host, database, user, password=None):
         if "PGPASSWORD" in os.environ:
             del os.environ["PGPASSWORD"]
 
-# Ejemplo de uso:
 # backup_database("localhost", "my_database", "my_user")
