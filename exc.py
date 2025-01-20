@@ -2,13 +2,9 @@ import os
 import pandas as pd
 import logging
 import re
-from utils import get_table_names  # Importar desde utils.py
+from utils import get_table_names
 
 logging.basicConfig(level=logging.INFO, format='%(asctime=s - %(levelname=s - %(message=s')
-
-# Resto del código sin cambios
-
-
 
 def fetch_all_data_from_table(connection, table_name):
     """
@@ -50,7 +46,7 @@ def fetch_all_data_from_table(connection, table_name):
         logging.error(f"Error fetching data from table {table_name} and writing to Excel: {e}")
 
 
-# Ejemplo de uso:
+
 # connection = connect_to_db()
 # if connection:
 #     fetch_all_data_from_table(connection, 'nombre_de_tu_tabla')
