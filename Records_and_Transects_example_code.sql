@@ -10,8 +10,8 @@ CREATE TABLE record (
 -- Create the 'Fauna_CAI_Lower_Gallery_La_Garma' table to store fauna polygons
 CREATE TABLE Fauna_CAI_Lower_Gallery_La_Garma (
     id SERIAL PRIMARY KEY,               -- Auto-incrementing unique identifier
-    geom GEOMETRY(Polygon, 4326),        -- Geometry column of type Polygon with SRID 4326
-    description TEXT                     -- Description of the record
+    geom GEOMETRY(Polygon, 4326),       
+    description TEXT                     
 );
 
 -- Create a function 'insert_record' that will be executed as a trigger
