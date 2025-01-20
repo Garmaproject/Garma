@@ -5,8 +5,11 @@ This repository contains Python scripts for building an application that perform
 🔹 Features
 
 ✅ PostgreSQL database with PostGIS support.
+
 ✅ Python scripts for query execution and data analysis.
+
 ✅ Secure database connection using psycopg2.
+
 ✅ Integration with GIS platforms for spatial data visualization.
 
 Project Structure
