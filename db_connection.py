@@ -7,8 +7,8 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 def connect_to_db():
     """
-    Intenta conectarse a la base de datos utilizando las credenciales de las variables de entorno.
-    Retorna la conexión si es exitosa, de lo contrario retorna None.
+    Attempts to connect to the database using the credentials from environment variables.
+    Returns the connection if successful; otherwise, returns None.
     """
     logging.info("Trying to connect to the database...")
     try:
@@ -24,7 +24,7 @@ def connect_to_db():
 
 def close_db_connection(connection):
     """
-    Cierra la conexión a la base de datos si existe.
+    Closes the database connection if it exists.
     """
     if connection:
         connection.close()
