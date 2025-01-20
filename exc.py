@@ -25,16 +25,15 @@ def fetch_all_data_from_table(connection, table_name):
         # Crear un DataFrame de pandas con los datos de la consulta SQL
         df = pd.read_sql(f'SELECT * FROM "{table_name_sanitized}"', connection)
         
-        # Crear la carpeta 'Tables' si no existe
+        # Create the 'Tables' directory if it doesn't exist
         if not os.path.exists('Tables'):
             os.makedirs('Tables')
         
-        # Definir el nombre del archivo Excel
-        # Modificar el nombre de la tabla para crear un nombre de archivo válido
+        # Define a safe filename
         safe_table_name = table_name.replace('.', '_').replace('"', '').replace(' ', '_')
         excel_path = os.path.join('Tables', f"{safe_table_name}.xlsx")
         
-        # Escribir el DataFrame en un archivo Excel
+        # Write DataFrame to an Excel file
         df.to_excel(excel_path, index=False, engine='openpyxl')
         
         logging.info(f"Data processed. File '{excel_path}' successfully created.")
