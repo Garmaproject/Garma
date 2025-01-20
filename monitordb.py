@@ -1,7 +1,6 @@
 import logging
 from sqlalchemy import text
 
-# Configurar el logger
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def monitor_database(connection):
@@ -30,7 +29,7 @@ def monitor_database(connection):
         # Check cache hit ratio
         result = connection.execute(text("SELECT sum(heap_blks_read) as heap_read, sum(heap_blks_hit) as heap_hit, (sum(heap_blks_hit) - sum(heap_blks_read)) / sum(heap_blks_hit) as ratio FROM pg_statio_user_tables"))
         result = result.fetchone()
-        cache_hit_ratio = result[2]  # Accedemos al tercer valor de la tupla
+        cache_hit_ratio = result[2] 
         print(f"Cache hit ratio: {cache_hit_ratio:.2f}")
 
         # Check indexes with high read/write ratios
@@ -42,7 +41,6 @@ def monitor_database(connection):
     except Exception as e:
         logging.error(f"Unexpected error while monitoring the database: {e}")
 
-# Función de prueba comentada para evitar ejecuciones no deseadas.
 # connection = connect_to_db()
 # if connection:
 #     monitor_database(connection)
