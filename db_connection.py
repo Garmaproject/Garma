@@ -3,7 +3,6 @@ from sqlalchemy.orm import sessionmaker
 import os
 import logging
 
-# Configurar el logger
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def connect_to_db():
