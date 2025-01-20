@@ -1,12 +1,8 @@
 import pandas as pd
 import logging
-from utils import get_table_names, get_column_names  # Importar desde utils.py
+from utils import get_table_names, get_column_names
 
 logging.basicConfig(level=logging.INFO, format='%(asctime=s - %(levelname=s - %(message=s')
-
-# Resto del código sin cambios
-
-
 
 def execute_query(connection, query):
     """
