@@ -1,23 +1,25 @@
-# Garma recording code
+Garma Recording Code
+This repository contains Python scripts for building an application that performs data analysis on a PostgreSQL database, with PostGIS integration for geographic data processing.
 
-Scripts in Python with basic code for a creation of an APP for data analysis in a PostgreSQL database
+🔹 Features
+✅ PostgreSQL database with PostGIS support.
+✅ Python scripts for query execution and data analysis.
+✅ Secure database connection using psycopg2.
+✅ Integration with GIS platforms for spatial data visualization.
 
-#Code_Instructions.py
-
-Procces to create a virtual enviroment for our project.
-
+Project Structure
+📜 Code_Instructions.py
+Instructions to set up a virtual environment for the project.
 Summary of the main functions of the code.
+Execution of runquery.py to interact with the database.
+Process of creating and running our own application to execute the code.
 
-Execution of the runquery.py.
+🗄️ Database_code.sql
+Example SQL script for creating the database in PostgreSQL.
+Configuration to enable PostGIS extension for GIS support.
+Establishes a connection between the database and our GIS platform.
 
-Procces of creation of ouw own app to execute the code.
+🌍 Records_and_Transects_example_code.sql
+Example SQL script for recording and positioning of Records & Transects (R&T).
+Defines the method for managing spatial data and geographic positioning.
 
-
-#Database_code.sql
-
-Example of code necessary to create our database in PostgreSQL and connect to our platform (GIS) via postgis extension.
-
-
-#Records_and_Transects_example_code.sql
-
-Example of code necessary to create the method of recording and positioning R&T
